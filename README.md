@@ -37,14 +37,14 @@ O sistema foi projetado para ser robusto e desacoplado, utilizando um arquivo de
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/seu-usuario/nome-do-repositorio.git](https://github.com/seu-usuario/nome-do-repositorio.git)
-    cd nome-do-repositorio
+    git clone [https://github.com/Eduardooh92/PDF-Data-Extractor.git](https://github.com/Eduardooh92/PDF-Data-Extractor.git)
+    cd PDF-Data-Extractor
     ```
 
-2.  **Instale as dependências:**
+2.  **Crie e ative um ambiente virtual:**
     É altamente recomendável usar um ambiente virtual (`venv`) para isolar as dependências do projeto.
     ```bash
-    # Crie um ambiente virtual (opcional, mas recomendado)
+    # Crie o ambiente virtual
     python -m venv venv
     
     # Ative o ambiente virtual
@@ -52,25 +52,30 @@ O sistema foi projetado para ser robusto e desacoplado, utilizando um arquivo de
     .\venv\Scripts\activate
     # Linux / macOS
     source venv/bin/activate
-    
-    # Instale as bibliotecas necessárias
-    pip install PyMuPDF openpyxl
+    ```
+
+3.  **Instale as dependências:**
+    O arquivo `requirements.txt` automatiza a instalação de todos os pacotes necessários.
+    ```bash
+    # Instale as dependências a partir do arquivo requirements.txt
+    pip install -r requirements.txt
     ```
 
 ### Configuração
 
-1.  **Crie as pastas:** Crie a estrutura de pastas que será usada pelo sistema (entrada, saída, processados, erros).
+1.  **Crie a estrutura de pastas:** Conforme necessário, crie as pastas que serão usadas para entrada, saída, etc.
 
-2.  **Edite o `config.ini`:**
-    Abra o arquivo `config.ini` e ajuste os caminhos (`Paths`) para que correspondam à estrutura de pastas que você criou no seu ambiente.
+2.  **Configure o ambiente:**
+    - Crie uma cópia do arquivo `config.ini.example` e renomeie-a para `config.ini`.
+    - Abra o `config.ini` e ajuste os caminhos (`Paths`) para que correspondam à sua estrutura de pastas local.
 
     ```ini
     [Paths]
-    InputFolder = /caminho/para/sua/pasta/de/entrada
-    OutputFolder = /caminho/para/sua/pasta/de/saida
-    ProcessedFolder = /caminho/para/sua/pasta/de/processados
-    ErrorFolder = /caminho/para/sua/pasta/de/erros
-    ExcelTemplate = /caminho/para/seu/template.xlsx
+    InputFolder = ./entrada
+    OutputFolder = ./saida
+    ProcessedFolder = ./processados
+    ErrorFolder = ./erros
+    ExcelTemplate = template_ficha_cadastral.xlsx
 
     [Settings]
     LogFile = processamento.log
@@ -85,4 +90,4 @@ O sistema foi projetado para ser robusto e desacoplado, utilizando um arquivo de
     python processador_ficha.py
     ```
 
-3.  O script irá processar os arquivos, gerar a planilha preenchida na pasta de `OutputFolder` e mover os PDFs para as pastas `ProcessedFolder` ou `ErrorFolder`, conforme o resultado da operação. O arquivo `processamento.log` será criado no mesmo diretório do script com todos os detalhes da execução.
+3.  O script irá processar os arquivos, gerar a planilha preenchida na pasta de `OutputFolder` e mover os PDFs para as pastas `ProcessedFolder` ou `ErrorFolder`. O arquivo `processamento.log` será criado com todos os detalhes da execução.
